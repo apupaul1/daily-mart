@@ -48,10 +48,11 @@ const FAQSection = () => {
                     <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-green-600 mb-10 sm:mb-12">
                         <span role="img" aria-label="question mark"></span> Frequently Asked Questions
                     </h2>
+
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className={`border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 ease-in-out 
+                            className={`border- border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 ease-in-out 
             ${activeIndex === index ? 'shadow-md ring-2 ring-green-400 bg-white' : 'shadow-sm hover:shadow-md'}
             `}
                         >
