@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Banner = () => {
     return (
-        <div className=" bg-gradient-to-r from-green-50 to-white py-12 lg:h-[550px]">
+        <div className=" bg-gradient-to-r from-green-50 to-white py-12 lg:h-[550px] mb-12">
             <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-4">
                 {/* Text Section */}
                 <motion.div 
