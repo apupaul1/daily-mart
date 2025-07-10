@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
 
@@ -71,8 +72,9 @@ const Register = () => {
 
                         <button type="submit" className="btn btn-neutral w-full">Register</button>
                     </fieldset>
-                    <p><small>Already have an account? <Link to={'/login'}>Login</Link></small></p>
+                    <p><small>Already have an account? <Link className='btn-link' to={'/login'}>Login</Link></small></p>
                 </form>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );
