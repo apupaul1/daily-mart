@@ -7,51 +7,41 @@ const Login = () => {
 
     const onSubmit = data => {
         console.log(data);
-    }
+    };
 
     return (
-        <div className='bg-white p-24'>
+        <div className="bg-white shadow-lg rounded-xl p-8 md:p-10">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <fieldset className="fieldset">
+                <h2 className='text-2xl font-semibold text-center text-gray-800 mb-6'>Login Now</h2>
 
-                    <h2 className='text-black text-3xl mb-8'>Login Now</h2>
+                <label className="block text-gray-700 mb-1">Email</label>
+                <input
+                    {...register('email', {
+                        required: "Email Address is required"
+                    })}
+                    type="email"
+                    className="input input-bordered w-full mb-2"
+                    placeholder="Email"
+                />
+                {errors.email && <p className='text-red-500 text-sm mb-2'>{errors.email.message}</p>}
 
-                    <label className="label text-black">Email</label>
-                    <input
-                        {...register('email', {
-                            required: "Email Address is required"
-                        })}
-                        aria-invalid={errors.email ? "true" : "false"}
-                        type="email"
-                        className="input text-black"
-                        placeholder="Email" />
+                <label className="block text-gray-700 mb-1">Password</label>
+                <input
+                    {...register('password', {
+                        required: true, minLength: 6
+                    })}
+                    type="password"
+                    className="input input-bordered w-full mb-2"
+                    placeholder="Password"
+                />
+                {errors.password?.type === 'required' && <p className='text-red-500 text-sm mb-2'>Password is required</p>}
+                {errors.password?.type === 'minLength' && <p className='text-red-500 text-sm mb-2'>Password must be 6 characters or longer</p>}
 
-                    {errors.email && <p className='text-red-500' role='alert'>{errors.email.message}</p>}
+                <div className="mb-4 text-right">
+                    <a className="text-sm text-blue-600 hover:underline cursor-pointer">Forgot password?</a>
+                </div>
 
-
-                    <label className="label text-black">Password</label>
-                    <input
-                        {...register('password', {
-                            required: true, minLength: 6
-                        })}
-                        type="password"
-                        className="input text-black"
-                        placeholder="Password" />
-                    {
-                        errors.password?.type === 'required' && <p className='text-red-500'>Password is required</p>
-                    }
-
-                    {
-                        errors.password?.type === 'minLength' && <p className='text-red-500'>Password Must be 6 characters or longer</p>
-                    }
-
-
-                    <div><a className="link link-hover text-black">Forgot password?</a></div>
-
-
-                    
-                </fieldset>
-                <button className="btn btn-neutral mt-4">Login</button>
+                <button type="submit" className="btn btn-neutral w-full">Login</button>
             </form>
         </div>
     );

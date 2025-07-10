@@ -31,7 +31,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex gap-5">
                     <button className='btn'><NavLink to={'/login'}>Login</NavLink></button>
-                    <button className='btn'><NavLink>Signup</NavLink></button>
+                    <button className='btn'><NavLink to={'/register'}>Signup</NavLink></button>
                 </div>
             </div>
         </div>
