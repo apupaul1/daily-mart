@@ -30,7 +30,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end flex gap-5">
-                    <button className='btn'><NavLink>Login</NavLink></button>
+                    <button className='btn'><NavLink to={'/login'}>Login</NavLink></button>
                     <button className='btn'><NavLink>Signup</NavLink></button>
                 </div>
             </div>
