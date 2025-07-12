@@ -32,7 +32,7 @@ const AddProduct = () => {
     axiosSecure.post('/products', data)
       .then(res => {
         console.log(res.data);
-        
+
       })
     // toast.success("✅ Item added successfully!"); // Add toast here if you want
   };

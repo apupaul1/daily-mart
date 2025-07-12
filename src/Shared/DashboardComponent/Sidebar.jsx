@@ -14,7 +14,7 @@ const navItems = [
   { label: 'All Advertisement', path: '/all-ads', icon: <FaBullhorn /> },
   { label: 'All Order', path: '/all-orders', icon: <FaShoppingCart /> },
   { label: 'Add Product', path: '/dashboard/addproduct', icon: <FaPlus /> },
-  { label: 'My Products', path: '/my-products', icon: <MdOutlineProductionQuantityLimits /> },
+  { label: 'My Products', path: '/dashboard/my-products', icon: <MdOutlineProductionQuantityLimits /> },
   { label: 'Add Advertisement', path: '/add-advertisement', icon: <FaBullhorn /> },
   { label: 'My Advertisements', path: '/my-advertisements', icon: <FaChartLine /> },
   { label: 'View Price Trends', path: '/price-trends', icon: <BsCardChecklist /> },
