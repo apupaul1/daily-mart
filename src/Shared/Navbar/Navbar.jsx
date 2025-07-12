@@ -8,17 +8,21 @@ const Navbar = () => {
 
     const handleLogout = () => {
         logOut()
-        .then(result => {
-            console.log(result);
-        })
-        .catch(error=>{
-            console.log(error);
-        })
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const navLinks = <>
         <li><NavLink>All Products</NavLink></li>
-        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+            </>
+        }
     </>
 
     return (

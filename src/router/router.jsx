@@ -8,6 +8,7 @@ import PrivateRoute from "../routes/PrivateRoute";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyOrderList from "../pages/Dashboard/MyOrderList/MyOrderList";
+import AddProduct from "../pages/Vendor/AddProduct";
 
 export const router = createBrowserRouter([
     {
@@ -22,20 +23,6 @@ export const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
-        children: [
-            {
-                path:'/dashboard',
-                Component: Dashboard
-            },
-            {
-                path: 'myorder',
-                Component: MyOrderList
-            }
-        ]
-    },
-    {
-        path: '',
         Component: AuthLayout,
         children: [
             {
@@ -47,5 +34,19 @@ export const router = createBrowserRouter([
                 Component: Register
             }
         ]
-    }
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
+        children: [
+            {
+                path: 'myorder',
+                element: <PrivateRoute> <MyOrderList></MyOrderList> </PrivateRoute>
+            },
+            {
+                path: 'addproduct',
+                element: <PrivateRoute> <AddProduct></AddProduct> </PrivateRoute>
+            }
+        ]
+    },
 ])

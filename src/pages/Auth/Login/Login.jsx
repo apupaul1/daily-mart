@@ -57,6 +57,7 @@ const Login = () => {
                         </div>
 
                         <button type="submit" className="btn btn-neutral w-full">Login</button>
+                        
                     </fieldset>
                     <p><small>Don't have an account? <Link className='btn-link' to={'/register'}>Register</Link></small></p>
                 </form>
