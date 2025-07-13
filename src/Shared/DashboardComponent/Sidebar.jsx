@@ -13,13 +13,13 @@ const navItems = [
   { label: 'All Product', path: '/all-products', icon: <FaClipboardList /> },
   { label: 'All Advertisement', path: '/all-ads', icon: <FaBullhorn /> },
   { label: 'All Order', path: '/all-orders', icon: <FaShoppingCart /> },
-  { label: 'Add Product', path: '/dashboard/addproduct', icon: <FaPlus /> },
-  { label: 'My Products', path: '/dashboard/my-products', icon: <MdOutlineProductionQuantityLimits /> },
-  { label: 'Add Advertisement', path: '/dashboard/postadvertisement', icon: <FaBullhorn /> },
-  { label: 'My Advertisements', path: '/dashboard/my-ads', icon: <FaChartLine /> },
+  { label: 'Add Product', path: 'addproduct', icon: <FaPlus /> },
+  { label: 'My Products', path: 'my-products', icon: <MdOutlineProductionQuantityLimits /> },
+  { label: 'Add Advertisement', path: 'postadvertisement', icon: <FaBullhorn /> },
+  { label: 'My Advertisements', path: 'my-ads', icon: <FaChartLine /> },
   { label: 'View Price Trends', path: '/price-trends', icon: <BsCardChecklist /> },
   { label: 'Manage Watchlist', path: '/manage-watchlist', icon: <FaTools /> },
-  { label: 'My Order List', path: '/dashboard/myorder', icon: <FaShoppingCart /> },
+  { label: 'My Order List', path: '/myorder', icon: <FaShoppingCart /> },
 ];
 
 const Sidebar = () => {

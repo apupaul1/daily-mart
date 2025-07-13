@@ -6,17 +6,20 @@ import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const MyAddedProduct = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
-    const { data: products = [], refetch, isLoading } = useQuery({
-        queryKey: ['my-products', user?.email],
+
+    const { data: products = [], refetch } = useQuery({
+        queryKey: ['my-products', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/products?email=${user.email}`);
             return res.data;
         },
     });
+
+    console.log(products);
 
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
@@ -50,7 +53,7 @@ const MyAddedProduct = () => {
         }
     };
 
-    if (isLoading) return <div className="text-center mt-10">Loading...</div>;
+    // if (isLoading) return <div className="text-center mt-10">Loading...</div>;
 
     return (
         <div className="">

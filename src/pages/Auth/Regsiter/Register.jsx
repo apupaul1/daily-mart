@@ -1,28 +1,40 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
-import { Link } from 'react-router'; 
-import { useLocation, useNavigate } from 'react-router'; 
+import { Link } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; 
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import axios from 'axios';
+import useAxios from '../../../hooks/useAxios';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, updateUserInfo } = useAuth();
+    const axiosInstance = useAxios();
     const location = useLocation();
     const navigate = useNavigate();
     // Correctly access the 'from' state
     const from = location.state?.from?.pathname || '/';
-    const { createUser, updateUserInfo } = useAuth();
     const [profilePhoto, setProfilePhoto] = useState('')
 
     const onSubmit = data => {
         console.log(data);
 
         createUser(data.email, data.password)
-            .then(result => {
+            .then(async (result) => {
                 console.log(result.user);
                 navigate(from);
+
+                const userData = {
+                    email: data.email,
+                    role: 'user',
+                    created_at: new Date().toISOString(),
+                    last_login: new Date().toISOString()
+                }
+
+                const userRes = await axiosInstance.post('/users', userData);
+                console.log(userRes.data);
 
                 const userInfo = {
                     displayName: data.name,

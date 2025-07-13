@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAxios from '../../../hooks/useAxios';
 
 const ProductSection = () => {
 
@@ -9,14 +10,17 @@ const ProductSection = () => {
     const { loading } = useAuth();
 
     const axiosSecure = useAxiosSecure();
+    const axios = useAxios()
 
     useEffect(() => {
-        axiosSecure.get('/marketcards')
-            .then(res => setCards(res.data))
+        axios.get('/marketcards')
+            .then(res => {
+                console.log(res.data);
+                setCards(res.data)
+            })
             .catch(err => console.error('Error fetching cards:', err))
     }, []);
 
-    if (loading) return <p className="text-center mt-10">Loading...</p>;
 
     return (
         <div>

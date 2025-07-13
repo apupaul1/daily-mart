@@ -43,24 +43,28 @@ export const router = createBrowserRouter([
         element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
         children: [
             {
+                index: true,
+                Component: Dashboard
+            },
+            {
                 path: 'myorder',
-                element: <PrivateRoute> <MyOrderList></MyOrderList> </PrivateRoute>
+                element: <MyOrderList></MyOrderList>
             },
             {
                 path: 'addproduct',
-                element: <PrivateRoute> <AddProduct></AddProduct> </PrivateRoute>
+                element:  <AddProduct></AddProduct> 
             },
             {
                 path: 'my-products',
-                element: <PrivateRoute> <MyAddedProduct></MyAddedProduct> </PrivateRoute>
+                element: <MyAddedProduct></MyAddedProduct> 
             },
             {
                 path: 'postadvertisement',
-                element: <PrivateRoute> <AdvertisementForm></AdvertisementForm> </PrivateRoute>
+                element: <AdvertisementForm></AdvertisementForm> 
             },
             {
                 path: 'my-ads',
-                element: <PrivateRoute> <MyAdvertisements></MyAdvertisements> </PrivateRoute>
+                element:  <MyAdvertisements></MyAdvertisements> 
             }
         ]
     },

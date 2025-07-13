@@ -17,8 +17,8 @@ const MyAdvertisements = () => {
     const axiosSecure = useAxiosSecure();
 
     // Fetch current vendor ads
-    const { data: ads = [], isLoading, isError } = useQuery({
-        queryKey: ['my-ads', user?.email],
+    const { data: ads = [], refetch } = useQuery({
+        queryKey: ['my-ads', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/ads?email=${user.email}`);
             return res.data;
@@ -57,7 +57,7 @@ const MyAdvertisements = () => {
         }
     };
 
-    { isLoading && <p className="text-gray-500">Loading your advertisements...</p> }
+    // { isLoading && <p className="text-gray-500">Loading your advertisements...</p> }
 
     return (
         <div className="p-6">

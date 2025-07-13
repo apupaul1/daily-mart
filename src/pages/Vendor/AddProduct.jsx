@@ -28,23 +28,33 @@ const AddProduct = () => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      console.log(data);
 
-      const res = await axiosSecure.post('/products', data)
+    axiosSecure.post('/products', data).then(res => {
       console.log(res.data);
-
       if (res.data.insertedId) {
         toast.success("Advertisement submitted successfully!");
         reset();
       } else {
         toast.error("Submission failed. Please try again.");
       }
-    }
-    catch (err) {
-      console.error("Submit error:", err);
-      toast.error("Something went wrong while submitting.");
-    }
+    })
+    // try {
+    //   console.log(data);
+
+    //   const res = await axiosSecure.post('/products', data)
+    //   console.log(res.data);
+
+    //   if (res.data.insertedId) {
+    //     toast.success("Advertisement submitted successfully!");
+    //     reset();
+    //   } else {
+    //     toast.error("Submission failed. Please try again.");
+    //   }
+    // }
+    // catch (err) {
+    //   console.error("Submit error:", err);
+    //   toast.error("Something went wrong while submitting.");
+    // }
   };
 
   const selectedDate = watch('date');
