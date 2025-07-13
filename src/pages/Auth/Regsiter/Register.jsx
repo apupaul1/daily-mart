@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
-import { Link } from 'react-router'; // Changed to react-router-dom for Link
-import { useLocation, useNavigate } from 'react-router'; // Changed to react-router-dom
+import { Link } from 'react-router'; 
+import { useLocation, useNavigate } from 'react-router'; 
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; // Importing icons
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; 
+import axios from 'axios';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const location = useLocation();
     const navigate = useNavigate();
     // Correctly access the 'from' state
-    const from = location.state?.from?.pathname || '/'; 
-    const { createUser } = useAuth();
+    const from = location.state?.from?.pathname || '/';
+    const { createUser, updateUserInfo } = useAuth();
+    const [profilePhoto, setProfilePhoto] = useState('')
 
     const onSubmit = data => {
         console.log(data);
@@ -21,21 +23,46 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 navigate(from);
+
+                const userInfo = {
+                    displayName: data.name,
+                    photoURL: profilePhoto
+                }
+
+                updateUserInfo(userInfo)
+                    .then(() => {
+                        console.log('User info updated successfully');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             })
             .catch(error => {
                 console.log(error);
             });
     };
 
+    const handleImageupload = async (e) => {
+        const image = e.target.files[0];
+        console.log(image);
+        const formData = new FormData();
+        formData.append('image', image);
+
+        const imageUploadURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
+        const res = await axios.post(imageUploadURL, formData);
+
+        setProfilePhoto(res.data.data.url);
+    }
+
     return (
         <div className="hero">
             <div className="hero-content flex-col lg:flex-row-reverse w-full max-w-md">
                 <div className="card bg-base-100 w-full shadow-2xl">
-                    <div className="card-body p-8">
+                    <div className="card-body p-8 lg:p-10 xl:p-12">
                         <h1 className="text-3xl font-bold text-black mb-4 text-center">Create an Account</h1>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <fieldset className="fieldset space-y-4">
+                            <fieldset className="fieldset space-y-1">
 
                                 {/* Name */}
                                 <div className="form-control">
@@ -53,6 +80,19 @@ const Register = () => {
                                     </div>
                                     {errors.name && <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>}
                                 </div>
+
+                                {/* Profile Picture */}
+                                <div className="form-control">
+                                    <label className="label text-black">Profile Picture</label>
+                                    <input
+                                        onChange={handleImageupload}
+                                        type="file"
+                                        accept="image/*"
+                                        className="file-input file-input-bordered w-full"
+                                        placeholder='Your profile picture' />
+
+                                </div>
+
 
                                 {/* Email */}
                                 <div className="form-control">
@@ -101,7 +141,7 @@ const Register = () => {
 
                                 <button type="submit" className="btn btn-neutral w-full">Register</button>
                             </fieldset>
-                            <p className='mt-4 text-center text-black'><small>Already have an account? <Link className='btn-link' to={'/login'}>Login</Link></small></p>
+                            <p className='mt-1 text-center text-black'><small>Already have an account? <Link className='btn-link' to={'/login'}>Login</Link></small></p>
                         </form>
                         <SocialLogin></SocialLogin>
                     </div>

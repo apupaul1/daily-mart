@@ -15,8 +15,8 @@ const navItems = [
   { label: 'All Order', path: '/all-orders', icon: <FaShoppingCart /> },
   { label: 'Add Product', path: '/dashboard/addproduct', icon: <FaPlus /> },
   { label: 'My Products', path: '/dashboard/my-products', icon: <MdOutlineProductionQuantityLimits /> },
-  { label: 'Add Advertisement', path: '/add-advertisement', icon: <FaBullhorn /> },
-  { label: 'My Advertisements', path: '/my-advertisements', icon: <FaChartLine /> },
+  { label: 'Add Advertisement', path: '/dashboard/postadvertisement', icon: <FaBullhorn /> },
+  { label: 'My Advertisements', path: '/dashboard/my-ads', icon: <FaChartLine /> },
   { label: 'View Price Trends', path: '/price-trends', icon: <BsCardChecklist /> },
   { label: 'Manage Watchlist', path: '/manage-watchlist', icon: <FaTools /> },
   { label: 'My Order List', path: '/dashboard/myorder', icon: <FaShoppingCart /> },
@@ -41,12 +41,12 @@ const Sidebar = () => {
       {/* Profile */}
       <div className="text-center mb-6">
         <img
-          src="https://bootdey.com/img/Content/avatar/avatar6.png"
+          src={user.photoURL}
           alt="Avatar"
-          className="w-16 h-16 rounded-full mx-auto mb-2"
+          className="w-20 h-20 rounded-full mx-auto mb-2"
         />
         <h2 className="text-sm font-semibold text-gray-800">{user.email}</h2>
-        <p className="text-xs text-gray-500">Admin Head</p>
+        <p className="text-xs text-gray-500">{user.displayName}</p>
       </div>
 
       {/* Navigation */}

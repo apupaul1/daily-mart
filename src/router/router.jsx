@@ -10,6 +10,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MyOrderList from "../pages/Dashboard/MyOrderList/MyOrderList";
 import AddProduct from "../pages/Vendor/AddProduct";
 import MyAddedProduct from "../pages/Vendor/MyAddedProduct/MyAddedProduct";
+import AdvertisementForm from "../pages/Dashboard/AdvertisementForm/AdvertisementForm";
+import MyAdvertisements from "../pages/Vendor/MyAdvertisements/MyAdvertisements";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +53,14 @@ export const router = createBrowserRouter([
             {
                 path: 'my-products',
                 element: <PrivateRoute> <MyAddedProduct></MyAddedProduct> </PrivateRoute>
+            },
+            {
+                path: 'postadvertisement',
+                element: <PrivateRoute> <AdvertisementForm></AdvertisementForm> </PrivateRoute>
+            },
+            {
+                path: 'my-ads',
+                element: <PrivateRoute> <MyAdvertisements></MyAdvertisements> </PrivateRoute>
             }
         ]
     },

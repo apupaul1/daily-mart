@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { FaEnvelope, FaUserAlt, FaStore, FaCalendarAlt, FaInfoCircle, FaLeaf, FaClipboardCheck, FaImage, FaMoneyBillWave, FaStickyNote } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
   const { register, handleSubmit, control, setValue, watch, reset } = useForm({
@@ -26,15 +27,24 @@ const AddProduct = () => {
     name: 'prices'
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
 
-    axiosSecure.post('/products', data)
-      .then(res => {
-        console.log(res.data);
+      const res = await axiosSecure.post('/products', data)
+      console.log(res.data);
 
-      })
-    // toast.success("✅ Item added successfully!"); // Add toast here if you want
+      if (res.data.insertedId) {
+        toast.success("Advertisement submitted successfully!");
+        reset();
+      } else {
+        toast.error("Submission failed. Please try again.");
+      }
+    }
+    catch (err) {
+      console.error("Submit error:", err);
+      toast.error("Something went wrong while submitting.");
+    }
   };
 
   const selectedDate = watch('date');
@@ -42,7 +52,7 @@ const AddProduct = () => {
   const inputFocusClasses = "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150";
 
   return (
-    <div className="p-4 sm:p-6 bg-white rounded-lg shadow-md">
+    <div className=" p-4 sm:p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Add Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
 
