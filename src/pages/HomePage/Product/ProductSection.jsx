@@ -3,11 +3,13 @@ import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAxios from '../../../hooks/useAxios';
+import { useNavigate } from 'react-router';
 
 const ProductSection = () => {
 
     const [cards, setCards] = useState([]);
-    const { loading } = useAuth();
+    const { loading, user } = useAuth();
+    const navigate = useNavigate();
 
     const axiosSecure = useAxiosSecure();
     const axios = useAxios()
@@ -20,6 +22,14 @@ const ProductSection = () => {
             })
             .catch(err => console.error('Error fetching cards:', err))
     }, []);
+
+    const handleDetails = (id) => {
+        if (!user?.email) {
+            navigate('/login');
+        } else {
+            navigate(`/details/${id}`);
+        }
+    };
 
 
     return (
@@ -45,7 +55,9 @@ const ProductSection = () => {
 
                                 </ul>
 
-                                <button className="mt-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                                <button
+                                    onClick={() => handleDetails(card._id)}
+                                    className="mt-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
                                     View Details
                                 </button>
                             </div>

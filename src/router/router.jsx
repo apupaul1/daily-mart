@@ -12,6 +12,9 @@ import AddProduct from "../pages/Vendor/AddProduct";
 import MyAddedProduct from "../pages/Vendor/MyAddedProduct/MyAddedProduct";
 import AdvertisementForm from "../pages/Dashboard/AdvertisementForm/AdvertisementForm";
 import MyAdvertisements from "../pages/Vendor/MyAdvertisements/MyAdvertisements";
+import AllProducts from "../pages/AllProducts/AllProducts";
+import ViewDetailsProduct from "../pages/ViewDetailsProduct/ViewDetailsProduct";
+import ManageWatchlist from "../pages/Dashboard/User/ManageWatchlist/ManageWatchlist";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +25,14 @@ export const router = createBrowserRouter([
                 index: true,
                 Component: HomePage
             },
+            {
+                path: 'allproducts',
+                Component: AllProducts
+            },
+            {
+                path: 'details/:id',
+                element: <PrivateRoute> <ViewDetailsProduct></ViewDetailsProduct> </PrivateRoute>
+            }
         ]
     },
     {
@@ -65,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path: 'my-ads',
                 element:  <MyAdvertisements></MyAdvertisements> 
+            },
+            {
+                path: 'watchlist',
+                Component: ManageWatchlist
             }
         ]
     },
