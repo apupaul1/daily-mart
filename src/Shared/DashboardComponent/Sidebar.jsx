@@ -9,9 +9,9 @@ import { BsCardChecklist } from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
 
 const navItems = [
-  { label: 'All Users', path: '/all-users', icon: <FaUsers /> },
-  { label: 'All Product', path: '/all-products', icon: <FaClipboardList /> },
-  { label: 'All Advertisement', path: '/all-ads', icon: <FaBullhorn /> },
+  { label: 'All Users', path: 'all-users', icon: <FaUsers /> },
+  { label: 'All Product', path: 'all-products', icon: <FaClipboardList /> },
+  { label: 'All Advertisement', path: 'all-ads', icon: <FaBullhorn /> },
   { label: 'All Order', path: 'all-orders', icon: <FaShoppingCart /> },
   { label: 'Add Product', path: 'addproduct', icon: <FaPlus /> },
   { label: 'My Products', path: 'my-products', icon: <MdOutlineProductionQuantityLimits /> },

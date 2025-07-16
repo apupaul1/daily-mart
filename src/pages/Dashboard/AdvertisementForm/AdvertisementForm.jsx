@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
 const AdvertisementForm = () => {
+
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -34,7 +37,7 @@ const AdvertisementForm = () => {
   const onSubmit = async (data) => {
     try {
       if (!bannerImage) {
-        toast.error("❌ Please wait for the image to finish uploading.");
+        toast.error("Please wait for the image to finish uploading.");
         return;
       }
 
@@ -42,21 +45,23 @@ const AdvertisementForm = () => {
 
       const adData = {
         ...data,
-        banner: bannerImage
+        banner: bannerImage,
+        name: user.displayName,
+        email: user.email
       };
 
       const res = await axiosSecure.post("/ads", adData);
 
       if (res.data.insertedId) {
-        toast.success("✅ Advertisement submitted successfully!");
+        toast.success("Advertisement submitted successfully!");
         reset();
         setBannerImage('');
       } else {
-        toast.error("❌ Submission failed. Please try again.");
+        toast.error("Submission failed. Please try again.");
       }
     } catch (err) {
       console.error("Submit error:", err);
-      toast.error("⚠️ Something went wrong while submitting.");
+      toast.error("Something went wrong while submitting.");
     }
   };
 

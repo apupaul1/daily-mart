@@ -17,6 +17,9 @@ import ViewDetailsProduct from "../pages/ViewDetailsProduct/ViewDetailsProduct";
 import ManageWatchlist from "../pages/Dashboard/User/ManageWatchlist/ManageWatchlist";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import AllOrder from "../pages/Dashboard/AllOrder/AllOrder";
+import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AllAds from "../pages/Dashboard/AllAds/AllAds";
 
 export const router = createBrowserRouter([
     {
@@ -90,6 +93,18 @@ export const router = createBrowserRouter([
             {
                 path: 'all-orders',
                 Component: AllOrder,
+            },
+            {
+                path: 'all-products',
+                Component: AllProduct
+            },
+            {
+                path: 'all-users',
+                Component: AllUsers,
+            },
+            {
+                path: 'all-ads',
+                Component: AllAds,
             }
         ]
     },

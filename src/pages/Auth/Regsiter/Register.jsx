@@ -28,6 +28,7 @@ const Register = () => {
 
                 const userData = {
                     email: data.email,
+                    name: data.name,
                     role: 'user',
                     created_at: new Date().toISOString(),
                     last_login: new Date().toISOString()
