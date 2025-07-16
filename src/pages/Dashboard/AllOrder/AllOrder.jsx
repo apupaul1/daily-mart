@@ -1,18 +1,14 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { useNavigate } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 
-const MyOrderList = () => {
-    const { user } = useAuth();
+const AllOrder = () => {
     const axiosSecure = useAxiosSecure();
-    const navigate = useNavigate();
 
     const { isLoading, data: payments = [] } = useQuery({
-        queryKey: ['payments', user.email],
+        queryKey: ['payments'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/payments?email=${user.email}`);
+            const res = await axiosSecure.get('/payments');
             return res.data;
         },
     });
@@ -22,12 +18,6 @@ const MyOrderList = () => {
         return <p className="text-center mt-10 text-lg text-gray-500">Loading payments...</p>;
     }
 
-    // Handle navigating to product details page
-    const handleViewDetails = (productId) => {
-        navigate(`/details/${productId}`);
-    };
-
-    // Render the payment data in a table format
     return (
         <div className=" py-5">
             <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">My Order List</h2>
@@ -79,4 +69,4 @@ const MyOrderList = () => {
     );
 };
 
-export default MyOrderList;
+export default AllOrder;

@@ -15,6 +15,8 @@ import MyAdvertisements from "../pages/Vendor/MyAdvertisements/MyAdvertisements"
 import AllProducts from "../pages/AllProducts/AllProducts";
 import ViewDetailsProduct from "../pages/ViewDetailsProduct/ViewDetailsProduct";
 import ManageWatchlist from "../pages/Dashboard/User/ManageWatchlist/ManageWatchlist";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import AllOrder from "../pages/Dashboard/AllOrder/AllOrder";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +64,10 @@ export const router = createBrowserRouter([
                 element: <MyOrderList></MyOrderList>
             },
             {
+                path: 'payment/:productId',
+                Component: Payment
+            },
+            {
                 path: 'addproduct',
                 element:  <AddProduct></AddProduct> 
             },
@@ -80,6 +86,10 @@ export const router = createBrowserRouter([
             {
                 path: 'watchlist',
                 Component: ManageWatchlist
+            },
+            {
+                path: 'all-orders',
+                Component: AllOrder,
             }
         ]
     },

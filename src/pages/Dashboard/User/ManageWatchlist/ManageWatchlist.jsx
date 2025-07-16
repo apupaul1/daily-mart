@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import useAuth from '../../../../hooks/useAuth';
@@ -52,15 +52,20 @@ const ManageWatchlist = () => {
     };
 
     if (isLoading) {
-        return <p className="text-center mt-10 text-lg text-gray-500">Loading watchlist...</p>;
+        return <p className="text-center mt-10 text-lg text-gray-500">Loading watchlist</p>;
     }
 
     return (
         <div className="px-4 py-10">
-            <h2 className="text-2xl font-bold text-center mb-6">📋 My Watchlist</h2>
+            <h2 className="text-2xl font-bold text-center mb-6"> My Watchlist</h2>
 
             {watchlists.length === 0 ? (
-                <p className="text-center text-gray-600">No items in your watchlist.</p>
+                <div className='flex items-center flex-col gap-5'>
+                    <p className="text-center text-gray-600">No items in your watchlist.</p>
+                    <Link to={'/allproducts'}>
+                        <button className='btn btn-neutral'>Go Back to Add Items</button></Link>
+                </div>
+
             ) : (
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full border rounded-lg shadow">

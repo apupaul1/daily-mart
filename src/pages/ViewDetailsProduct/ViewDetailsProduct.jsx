@@ -26,7 +26,7 @@ const ViewDetailsProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['productDetails', id],
@@ -51,7 +51,12 @@ const ViewDetailsProduct = () => {
     productName: product.itemName,
     marketName: product.marketName,
     date: new Date().toISOString(),
-    userEmail: user?.email, 
+    userEmail: user?.email,
+  }
+
+  const handlePay = (id) => {
+    console.log("Procced to payment");
+    navigate(`/dashboard/payment/${id}`)
   }
 
 
@@ -59,18 +64,15 @@ const ViewDetailsProduct = () => {
     try {
       const res = await axiosSecure.post('/watchlist', watchList);
       if (res.data.insertedId) {
-        toast.success("✅ Added to watchlist!");
+        toast.success("Added to watchlist!");
       } else {
-        toast.error("❌ Failed to add to watchlist.");
+        toast.error("Failed to add to watchlist.");
       }
     } catch (err) {
       console.error(err);
-      toast.error("❌ An error occurred while adding to watchlist.");
+      toast.error("An error occurred while adding to watchlist.");
     }
   };
-
-
-
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -139,7 +141,9 @@ const ViewDetailsProduct = () => {
               className="px-4 py-2 border border-red-500 text-red-600 hover:bg-red-50 rounded-md text-sm font-medium transition flex items-center gap-1">
               <FaHeart /> Add to Watchlist
             </button>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-base font-medium transition shadow inline-flex items-center gap-2">
+            <button 
+            onClick={()=> handlePay(product._id)}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-base font-medium transition shadow inline-flex items-center gap-2">
               <FaCartPlus /> Buy Now
             </button>
           </div>
