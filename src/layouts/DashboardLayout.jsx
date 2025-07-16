@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../Shared/Navbar/Navbar';
-import { Link, Outlet } from 'react-router';
+import { Link, NavLink, Outlet } from 'react-router';
 import Sidebar from '../Shared/DashboardComponent/Sidebar';
 import { FaBars } from 'react-icons/fa';
 
@@ -34,8 +34,9 @@ const DashboardLayout = () => {
           </div>
           <div className="mx-2 flex-1 px-2">Dashboard</div>
           <div className="hidden flex-none lg:block">
-            <ul className="menu menu-horizontal">
+            <ul className="menu menu-horizontal flex items-center">
               <li><Link to={'/'}>Home</Link></li>
+              <NavLink><button className='btn btn-primary'>Logout</button></NavLink>
             </ul>
           </div>
         </div>

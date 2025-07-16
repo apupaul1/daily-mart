@@ -20,7 +20,7 @@ const AllAds = () => {
     // Mutation: Update status
     const updateStatus = useMutation({
         mutationFn: async ({ id, status }) => {
-            return await axiosSecure.patch(`/ads/${id}`, { status });
+            return await axiosSecure.patch(`/ads/status/${id}`, { status });
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['all-ads']);

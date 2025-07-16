@@ -39,7 +39,7 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <p className="btn btn-ghost text-xl ">DailyMart</p>
+                    <NavLink to={'/'}> <p className="btn btn-ghost text-xl ">DailyMart</p></NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -48,7 +48,15 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex gap-5">
                     {
-                        user ? <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
+                        user ? <>
+                            <div className="avatar">
+                                <div className="w-11 rounded-full">
+                                    <img src={user.photoURL} />
+                                </div>
+                            </div>
+                            <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
+
+                        </>
                             :
                             <>
                                 <button className='btn'><NavLink to={'/login'}>Login</NavLink></button>

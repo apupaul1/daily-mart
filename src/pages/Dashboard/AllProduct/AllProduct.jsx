@@ -78,6 +78,10 @@ const AllProducts = () => {
         }
     };
 
+    const handleUpdate = (id) => {
+        navigate(`/dashboard/update-product/${id}`);
+    }
+
     // Loading state
     if (isLoading) {
         return <p className="text-center mt-10 text-lg text-gray-500">Loading products...</p>;
@@ -127,7 +131,7 @@ const AllProducts = () => {
                                                 </>
                                             ) : (
                                                 <button
-                                                    onClick={() => navigate(`/update-product/${product._id}`)}
+                                                    onClick={() => handleUpdate(product._id)}
                                                     className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm shadow"
                                                 >
                                                     Update

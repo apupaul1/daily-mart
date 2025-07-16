@@ -21,6 +21,12 @@ const MyAddedProduct = () => {
 
     console.log(products);
 
+    const handleUpdate = (id) =>{
+        navigate(`/dashboard/update-product/${id}`);
+    }
+
+    console.log(handleUpdate);
+
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
             title: 'Are you sure?',
@@ -95,7 +101,7 @@ const MyAddedProduct = () => {
                                 <td className="flex flex-col lg:flex-row gap-2 justify-center items-center">
                                     <button
                                         className="btn btn-sm btn-info w-24"
-                                        onClick={() => navigate(`/dashboard/update-product/${product._id}`)}
+                                        onClick={() => handleUpdate(product._id)}
                                     >
                                         Update
                                     </button>

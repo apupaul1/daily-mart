@@ -20,6 +20,8 @@ import AllOrder from "../pages/Dashboard/AllOrder/AllOrder";
 import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AllAds from "../pages/Dashboard/AllAds/AllAds";
+import PriceTrends from "../pages/Dashboard/PriceTrends/PriceTrends";
+import UpdateProduct from "../pages/Vendor/UpdateProduct/UpdateProduct";
 
 export const router = createBrowserRouter([
     {
@@ -89,6 +91,14 @@ export const router = createBrowserRouter([
             {
                 path: 'watchlist',
                 Component: ManageWatchlist
+            },
+            {
+                path: 'price-trends',
+                Component: PriceTrends,
+            },
+            {
+                path: 'update-product/:id',
+                Component: UpdateProduct
             },
             {
                 path: 'all-orders',
