@@ -26,7 +26,7 @@ const DashboardLayout = () => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col bg-base-300">
         {/* Navbar */}
-        <div className="navbar bg-base-100 w-full">
+        <div className="navbar bg-green-400  w-full">
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
               <svg
@@ -44,13 +44,18 @@ const DashboardLayout = () => {
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2">Dashboard</div>
+          <div className='mx-2 flex-1 text-xl font-bold flex items-center relative'>
+            <img
+              className='w-12'
+              src={'./logo.png'} alt="" />
+            <NavLink to={'/'}> <p className="btn btn-ghost text-xl absolute top-1 left-8">DailyMart</p></NavLink>
+          </div>
           <ul className='flex-1'>
             <li><Link to={'/'}>Home</Link></li>
           </ul>
           <div className="">
             <ul className="menu menu-horizontal flex items-center">
-              
+
               <button onClick={handleLogout} className='btn btn-sm btn-primary'>Logout</button>
             </ul>
           </div>

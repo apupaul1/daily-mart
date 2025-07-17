@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
-import { FiSearch } from 'react-icons/fi';
+
 
 const AllProducts = () => {
   const { user } = useAuth();

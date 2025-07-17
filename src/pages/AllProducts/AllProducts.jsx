@@ -20,12 +20,12 @@ import {
 import { HiOutlineFilter, HiOutlineRefresh } from 'react-icons/hi';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 import Loading from '../../Shared/Loading/Loading';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAxios from '../../hooks/useAxios';
 
 const AllProducts = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxios()
 
   const [sortOrder, setSortOrder] = useState('');
   const [startDate, setStartDate] = useState(null);
@@ -39,7 +39,7 @@ const AllProducts = () => {
   const { data: products = {}, isLoading } = useQuery({
     queryKey: ['allProducts', appliedSort, appliedStart, appliedEnd, page],
     queryFn: async () => {
-      const res = await axiosSecure.get('/admin/products', {
+      const res = await axiosSecure.get('/all-products', {
         params: {
           sort: appliedSort || undefined,
           start: appliedStart ? appliedStart.toISOString() : undefined,
@@ -105,8 +105,8 @@ const AllProducts = () => {
             className="border border-gray-300 rounded px-3 py-2 text-sm"
           >
             <option value="">Sort by Price</option>
-            <option value="asc"><FaSortAmountUpAlt className="inline-block mr-1" /> Low to High</option>
-            <option value="desc"><FaSortAmountDownAlt className="inline-block mr-1" /> High to Low</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
           </select>
         </div>
 

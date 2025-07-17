@@ -40,7 +40,12 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <NavLink to={'/'}> <p className="btn btn-ghost text-xl ">DailyMart</p></NavLink>
+                    <div className='flex items-center relative'>
+                        <img
+                            className='w-12'
+                            src={'./logo.png'} alt="" />
+                        <NavLink to={'/'}> <p className="btn btn-ghost text-xl absolute top-1 left-8">DailyMart</p></NavLink>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -60,8 +65,8 @@ const Navbar = () => {
                         </>
                             :
                             <>
-                                <button className='btn'><NavLink to={'/login'}>Login</NavLink></button>
-                                <button className='btn'><NavLink to={'/register'}>Signup</NavLink></button>
+                                <button className='btn btn-primary'><NavLink to={'/login'}>Login</NavLink></button>
+                                <button className='btn btn-primary'><NavLink to={'/register'}>Signup</NavLink></button>
                             </>
                     }
                 </div>

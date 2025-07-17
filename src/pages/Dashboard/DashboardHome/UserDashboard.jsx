@@ -18,6 +18,10 @@ const UserDashboard = () => {
     },
   });
 
+    if (loading || !data) {
+    return <Loading />;
+  }
+
   
   if (error) return <p className="text-red-500 text-center text-lg mt-10">Error loading data</p>;
 

@@ -24,11 +24,11 @@ const Sidebar = () => {
   return (
     <div className="p-4 flex flex-col min-h-screen h-full overflow-y-auto">
       {/* Logo */}
-      <div className="flex items-center justify-center mb-6">
+      <div className="flex flex-col items-center justify-center mb-6">
         <img
-          src="https://themesbrand.com/ubold/layouts/assets/images/logo-sm.png"
+          src={'./logo.png'}
           alt="Logo"
-          className="w-6 h-6 mr-2"
+          className="w-12 mr-2"
         />
         <h1 className="text-lg font-bold text-gray-900">DailyMart</h1>
       </div>
