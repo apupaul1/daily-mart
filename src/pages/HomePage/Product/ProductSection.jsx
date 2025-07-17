@@ -33,13 +33,18 @@ const ProductSection = () => {
 
 
     return (
-        <div>
+        <div data-aos='zoom-in-up' >
             <h1 className='text-center text-4xl font-bold mb-5'>Product Section</h1>
             {
                 cards.length <= 0 ? <p className="text-center mt-10">No cards found.</p> :
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8 max-w-7xl mx-auto">
                         {cards.map(card => (
-                            <div key={card._id} className="bg-white shadow-md rounded-xl p-4 text-center">
+                            <div
+                                data-aos="fade-down"
+                                data-aos-offset="300"
+                                data-aos-easing="ease-in-sine"
+                                key={card._id}
+                                className="bg-white shadow-md rounded-xl p-4 text-center">
                                 <img
                                     src={card.imageUrl}
                                     alt="Product"

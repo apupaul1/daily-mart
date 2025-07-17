@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Loading from '../../../Shared/Loading/Loading';
 // import AdvertisementFormModal from './AdvertisementFormModal'; // You must create this
 
 const MyAdvertisements = () => {
@@ -44,7 +45,7 @@ const MyAdvertisements = () => {
     console.log(user.email);
 
     // Fetch current vendor ads
-    const { data: ads = [], refetch } = useQuery({
+    const { data: ads = [], refetch, isLoading } = useQuery({
         queryKey: ['my-ads', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/ads?email=${user.email}`);
@@ -145,11 +146,11 @@ const MyAdvertisements = () => {
     };
 
 
-    // { isLoading && <p className="text-gray-500">Loading your advertisements...</p> }
+    { isLoading && <Loading></Loading> }
 
     return (
         <div className="p-6">
-            <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">My Advertisements</h2>
+            <h2 className="text-3xl font-bold text-center text-neutral mb-6">My Advertisements</h2>
             <div className="overflow-x-auto">
                 <table className="table-auto w-full rounded-2xl shadow-lg bg-white">
                     <thead className='bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-left'>

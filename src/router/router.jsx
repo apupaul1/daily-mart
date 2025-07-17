@@ -5,7 +5,6 @@ import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Regsiter/Register";
 import PrivateRoute from "../routes/PrivateRoute";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyOrderList from "../pages/Dashboard/MyOrderList/MyOrderList";
 import AddProduct from "../pages/Vendor/AddProduct";
@@ -25,6 +24,11 @@ import UpdateProduct from "../pages/Vendor/UpdateProduct/UpdateProduct";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import VendorRoute from "../routes/VendorRoute";
+import Dashboard from "../pages/Dashboard/DashboardHome/Dashboard";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import About from "../Shared/Footer/About/About";
+import Contact from "../Shared/Footer/Contact/Contact";
+import Terms from "../Shared/Footer/Terms/Terms";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +50,18 @@ export const router = createBrowserRouter([
             {
                 path: 'details/:id',
                 element: <PrivateRoute> <ViewDetailsProduct></ViewDetailsProduct> </PrivateRoute>
+            },
+            {
+                path: 'Aboutus',
+                Component: About
+            },
+            {
+                path: 'Contactus',
+                Component: Contact
+            },
+            {
+                path: 'TermsandConditions',
+                Component: Terms
             }
         ]
     },
@@ -125,4 +141,8 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '*',
+        Component: ErrorPage
+    }
 ])

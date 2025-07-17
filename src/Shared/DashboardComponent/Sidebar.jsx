@@ -8,6 +8,7 @@ import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { BsCardChecklist } from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
 import UseUserRole from '../../hooks/UseUserRole';
+import Loading from '../Loading/Loading';
 
 
 const Sidebar = () => {
@@ -15,9 +16,10 @@ const Sidebar = () => {
   const { user } = useAuth()
   const { role, roleLoading } = UseUserRole();
 
-  console.log(roleLoading);
-  console.log(role);
 
+  if (roleLoading) {
+    return <Loading></Loading>
+  }
 
   return (
     <div className="p-4 flex flex-col min-h-screen h-full overflow-y-auto">
@@ -46,7 +48,15 @@ const Sidebar = () => {
       <nav className="flex-1">
         <p className="text-xs text-gray-400 uppercase mb-2">Navigation</p>
         <ul className="space-y-2 text-sm">
-          {/* Admin Only Links */}
+          <li>
+            <NavLink
+              className=
+              'flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-200 hover:bg-purple-100 hover:text-purple-700'
+              to={'/dashboard'}>
+              <FaUsers />
+              Home</NavLink>
+          </li>
+
           {!roleLoading && role === 'admin' &&
             <>
               <li>

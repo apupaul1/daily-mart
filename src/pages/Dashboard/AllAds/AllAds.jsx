@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Loading from '../../../Shared/Loading/Loading';
 
 const AllAds = () => {
     const axiosSecure = useAxiosSecure();
@@ -63,12 +64,12 @@ const AllAds = () => {
     };
 
     if (isLoading) {
-        return <p className="text-center mt-10 text-gray-500">Loading ads...</p>;
+        return <Loading></Loading>;
     }
 
     return (
         <div className="px-4 py-10">
-            <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">All Advertisements</h2>
+            <h2 className="text-3xl font-bold text-center text-neutral mb-6">All Advertisements</h2>
 
             {ads.length === 0 ? (
                 <p className="text-center text-gray-600">No advertisements found.</p>

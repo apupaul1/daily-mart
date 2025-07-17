@@ -19,6 +19,7 @@ import { toast } from 'react-toastify';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../Shared/Loading/Loading';
 
 const UpdateProduct = () => {
     const { register, handleSubmit, control, setValue, watch, reset } = useForm({
@@ -105,7 +106,7 @@ const UpdateProduct = () => {
     const inputFocusClasses =
         'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150';
 
-    if (isLoading) return <div className="text-center mt-10">Loading...</div>;
+    if (isLoading) return <Loading></Loading>;
 
     if (error)
         return (

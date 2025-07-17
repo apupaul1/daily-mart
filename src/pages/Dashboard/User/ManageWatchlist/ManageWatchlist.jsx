@@ -5,9 +5,10 @@ import { toast } from 'react-toastify';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import Loading from '../../../../Shared/Loading/Loading';
 
 const ManageWatchlist = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
@@ -51,8 +52,8 @@ const ManageWatchlist = () => {
         }
     };
 
-    if (isLoading) {
-        return <p className="text-center mt-10 text-lg text-gray-500">Loading watchlist</p>;
+    if (loading) {
+        return <Loading></Loading>
     }
 
     return (

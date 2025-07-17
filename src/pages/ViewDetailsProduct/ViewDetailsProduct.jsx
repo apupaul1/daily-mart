@@ -26,6 +26,7 @@ import useAuth from '../../hooks/useAuth';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
+import Loading from '../../Shared/Loading/Loading';
 
 
 const ViewDetailsProduct = () => {
@@ -37,7 +38,7 @@ const ViewDetailsProduct = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['productDetails', id],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/product/${id}`);
+      const res = await axios.get(`https://daily-mart-server.vercel.app/product/${id}`);
       return res.data;
     },
   });
@@ -46,7 +47,7 @@ const ViewDetailsProduct = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/reviews/${id}`)
+    axios.get(`https://daily-mart-server.vercel.app/reviews/${id}`)
       .then(res => setReviews(res.data))
       .catch(err => console.error(err));
   }, [id]);
@@ -112,7 +113,7 @@ const ViewDetailsProduct = () => {
   }, [selectedDate, product?.prices, latestPrice]); // Added optional chaining in dependency array
 
 
-  if (isLoading) return <p className="text-center mt-10 text-lg text-gray-600">Loading product details...</p>;
+  if (isLoading) return <Loading></Loading>
   if (error) return <p className="text-center mt-10 text-red-600 font-medium">Failed to load product details.</p>;
   if (!product) return <p className="text-center mt-10 text-gray-500">Product not found.</p>;
 

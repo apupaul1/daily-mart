@@ -19,10 +19,13 @@ import {
 } from 'react-icons/fa';
 import { HiOutlineFilter, HiOutlineRefresh } from 'react-icons/hi';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+import Loading from '../../Shared/Loading/Loading';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AllProducts = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure()
 
   const [sortOrder, setSortOrder] = useState('');
   const [startDate, setStartDate] = useState(null);
@@ -36,7 +39,7 @@ const AllProducts = () => {
   const { data: products = {}, isLoading } = useQuery({
     queryKey: ['allProducts', appliedSort, appliedStart, appliedEnd, page],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/all-products`, {
+      const res = await axiosSecure.get('/admin/products', {
         params: {
           sort: appliedSort || undefined,
           start: appliedStart ? appliedStart.toISOString() : undefined,
@@ -49,6 +52,8 @@ const AllProducts = () => {
     },
     keepPreviousData: true,
   });
+
+  console.log(products);
 
   const handleDetails = (id) => {
     if (!user?.email) {
@@ -123,7 +128,7 @@ const AllProducts = () => {
 
       {/* Product Cards */}
       {isLoading ? (
-        <p className="text-center text-lg font-semibold text-gray-500">Loading products...</p>
+        <Loading></Loading>
       ) : products.data?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.data.map((product) => (

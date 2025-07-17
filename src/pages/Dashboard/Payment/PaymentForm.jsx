@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import { toast } from 'react-toastify';
+import Loading from '../../../Shared/Loading/Loading';
 
 const PaymentForm = () => {
 
@@ -30,7 +31,7 @@ const PaymentForm = () => {
     })
 
     if (isPending) {
-        return '...loading'
+        return <Loading></Loading>
     }
 
     // console.log(productInfo.product);

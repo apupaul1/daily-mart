@@ -1,6 +1,7 @@
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../Shared/Loading/Loading';
 
 const AllOrder = () => {
     const axiosSecure = useAxiosSecure();
@@ -15,12 +16,12 @@ const AllOrder = () => {
 
     // Loading state
     if (isLoading) {
-        return <p className="text-center mt-10 text-lg text-gray-500">Loading payments...</p>;
+        return <Loading></Loading>
     }
 
     return (
-        <div className=" py-5">
-            <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">All Order</h2>
+        <div className="py-5">
+            <h2 className="text-3xl font-bold text-center text-neutral mb-6">All Order</h2>
 
             {payments.length === 0 ? (
                 <p className="text-center text-gray-600">No payments found.</p>

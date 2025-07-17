@@ -35,7 +35,7 @@ const PriceTrends = () => {
 
     return (
         <div>
-            <h2 className="text-3xl font-bold text-center text-indigo-600 my-6">Price Trends</h2>
+            <h2 className="text-3xl font-bold text-center text-neutral my-6">Price Trends</h2>
             <div className="flex flex-col md:flex-row p-6 gap-6">
                 {/* Sidebar */}
                 <div className="w-full md:w-1/4 border-r p-4 bg-white shadow rounded-md">

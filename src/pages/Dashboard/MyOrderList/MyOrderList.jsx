@@ -3,13 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useNavigate } from 'react-router';
+import Loading from '../../../Shared/Loading/Loading';
 
 const MyOrderList = () => {
-    const { user } = useAuth();
+    const { user,loading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
-    const { isLoading, data: payments = [] } = useQuery({
+    const { data: payments = [] } = useQuery({
         queryKey: ['payments', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/payments?email=${user.email}`);
@@ -17,9 +18,9 @@ const MyOrderList = () => {
         },
     });
 
-    // Loading state
-    if (isLoading) {
-        return <p className="text-center mt-10 text-lg text-gray-500">Loading payments...</p>;
+
+    if (loading) {
+        return <Loading></Loading>
     }
 
     // Handle navigating to product details page
@@ -30,7 +31,7 @@ const MyOrderList = () => {
     // Render the payment data in a table format
     return (
         <div className=" py-5">
-            <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">My Order List</h2>
+            <h2 className="text-3xl font-bold text-center text-neutral mb-6">My Order List</h2>
 
             {payments.length === 0 ? (
                 <p className="text-center text-gray-600">No payments found.</p>

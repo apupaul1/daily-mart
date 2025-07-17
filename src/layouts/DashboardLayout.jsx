@@ -45,10 +45,13 @@ const DashboardLayout = () => {
             </label>
           </div>
           <div className="mx-2 flex-1 px-2">Dashboard</div>
-          <div className="hidden flex-none lg:block">
+          <ul className='flex-1'>
+            <li><Link to={'/'}>Home</Link></li>
+          </ul>
+          <div className="">
             <ul className="menu menu-horizontal flex items-center">
-              <li><Link to={'/'}>Home</Link></li>
-              <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
+              
+              <button onClick={handleLogout} className='btn btn-sm btn-primary'>Logout</button>
             </ul>
           </div>
         </div>
@@ -56,7 +59,7 @@ const DashboardLayout = () => {
           <div className='hidden lg:block w-64 flex-1 bg-base-100'>
             <Sidebar></Sidebar>
           </div>
-          <div className='flex-4'>
+          <div className='flex-5 p-4 bg-white rounded-2xl'>
             <Outlet></Outlet>
           </div>
 

@@ -1,35 +1,31 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import Slider from 'react-slick';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import fallbackImage from '../../../assets/background.jpg';
+import useAxios from '../../../hooks/useAxios';
+import Loading from '../../../Shared/Loading/Loading';
 
 const AddHighlights = () => {
-    const axiosSecure = useAxiosSecure();
+    // const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxios();
 
     const { data: ads = [], isLoading, error } = useQuery({
-        queryKey: ['highlight-ads', 'approved'],
+        queryKey: ['highlight-ads', { status: 'approved' }],
         queryFn: async () => {
-            const res = await axiosSecure.get('/ads?status=approved');
+            const res = await axiosSecure.get('/ads', {
+                params: { status: 'approved' },
+            });
             return res.data;
         },
     });
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        autoplay: true,
-        speed: 800,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplaySpeed: 4000,
-        arrows: true,
-    };
+    console.log(ads);
 
     if (isLoading) {
-        return <p className="text-center mt-10 text-gray-500">Loading ads...</p>;
+        return <Loading></Loading>
     }
 
     if (error) {
@@ -41,28 +37,30 @@ const AddHighlights = () => {
     }
 
     return (
-        <div className=''>
-            <h2 className="text-3xl font-bold text-center mb-4 text-indigo-600">Advertisement Highlights</h2>
+        <div>
+            <h2 className="text-3xl font-bold text-center my-12 text-neutral">Advertisement Highlights</h2>
 
-            <div className="shadow-md rounded-md">
-                <Slider {...settings}>
-                    {ads.map((ad) => (
-                        <div key={ad._id} className="px-4 py-6">
-                            <div
-                                className="rounded-lg shadow-lg bg-cover bg-center h-[400px] flex items-center justify-center text-white"
-                                style={{
-                                    backgroundImage: `url(${ad.banner})`,
-                                }}
-                            >
-                                <div className="bg-black bg-opacity-50 p-6 rounded-md text-center max-w-xl">
-                                    <h3 className="text-2xl font-bold mb-2">{ad.title}</h3>
-                                    <p className="text-sm">{ad.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </Slider>
-            </div>
+            <Carousel
+                autoPlay
+                infiniteLoop
+                showIndicators={false}
+                showThumbs={false}
+                showStatus={false}
+                interval={3000}
+            >
+                {ads.map((ad, idx) => (
+                    <div key={idx}>
+                        <img
+                            className="h-[520px] w-full object-cover"
+                            src={ad.banner || fallbackImage}
+                            alt={`Ad ${idx + 1}`}
+                        />
+                        {ad.title && (
+                            <p className="legend text-lg">{ad.title}</p>
+                        )}
+                    </div>
+                ))}
+            </Carousel>
         </div>
     );
 };

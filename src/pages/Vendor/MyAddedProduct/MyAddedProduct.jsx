@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import Loading from '../../../Shared/Loading/Loading';
 
 const MyAddedProduct = () => {
     const { user, loading } = useAuth();
@@ -11,7 +12,7 @@ const MyAddedProduct = () => {
     const navigate = useNavigate();
 
 
-    const { data: products = [], refetch } = useQuery({
+    const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['my-products', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/products?email=${user.email}`);
@@ -19,7 +20,7 @@ const MyAddedProduct = () => {
         },
     });
 
-    console.log(products);
+    // console.log(products);
 
     const handleUpdate = (id) => {
         navigate(`/dashboard/update-product/${id}`);
@@ -59,7 +60,7 @@ const MyAddedProduct = () => {
         }
     };
 
-    // if (isLoading) return <div className="text-center mt-10">Loading...</div>;
+    if (isLoading) return <Loading></Loading>
 
     return (
         <div className="">

@@ -38,9 +38,13 @@ const FAQSection = () => {
 
                 <div className='flex-1 flex flex-col lg:flex-row gap-3 lg:relative  items-center'>
 
-                    <img className='md:w-[300px] lg:w-[300px] flex-1 rounded-[40px] lg:absolute lg:-top-10 lg:left-16' src={FAQ1} alt="" />
+                    <img 
+                    data-aos='zoom-in-up'
+                    className='w-[200px] md:w-[300px] lg:w-[300px] flex-1 rounded-[40px] lg:absolute lg:-top-10 lg:left-16' src={FAQ1} alt="" />
 
-                    <img className='hidden md:w-[300px] lg:flex lg:w-[300px] flex-1 rounded-[40px] border-t-8 border-t-white border-l-white border-l-8 lg:absolute lg:right-32 lg:top-8' src={FAQ2} alt="" />
+                    <img 
+                    data-aos='zoom-in-up'
+                    className='hidden md:w-[300px] lg:flex lg:w-[300px] flex-1 rounded-[40px] border-t-8 border-t-white border-l-white border-l-8 lg:absolute lg:right-32 lg:top-8' src={FAQ2} alt="" />
                 </div>
 
 
