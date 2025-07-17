@@ -21,19 +21,21 @@ import {
   FaMapMarkedAlt,
   FaCartPlus,
 } from 'react-icons/fa';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 import Loading from '../../Shared/Loading/Loading';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import UseUserRole from '../../hooks/UseUserRole';
 
 
 const ViewDetailsProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure()
   const { user } = useAuth();
+  const { role } = UseUserRole();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['productDetails', id],
@@ -211,17 +213,20 @@ const ViewDetailsProduct = () => {
 
           {/* Action Buttons */}
           <div className="mt-8 flex justify-center gap-6 flex-wrap">
-            <button
-              onClick={() => handleAddWatchlist(watchList)}
-              disabled={isWatchlisted}
-              className={`px-4 py-2 border ${isWatchlisted
+            {
+              role === 'user'? <>            <button
+                onClick={() => handleAddWatchlist(watchList)}
+                disabled={isWatchlisted}
+                className={`px-4 py-2 border ${isWatchlisted
                   ? 'border-red-600 bg-red-100 text-red-600'
                   : 'border-red-500 text-red-600 hover:bg-red-50'
-                } rounded-md text-sm font-medium transition flex items-center gap-1`}
-            >
-              <FaHeart className={isWatchlisted ? 'text-red-600' : 'text-red-300'} />
-              {isWatchlisted ? 'Added to Watchlist' : 'Add to Watchlist'}
-            </button>
+                  } rounded-md text-sm font-medium transition flex items-center gap-1`}
+              >
+                <FaHeart className={isWatchlisted ? 'text-red-600' : 'text-red-300'} />
+                {isWatchlisted ? 'Added to Watchlist' : 'Add to Watchlist'}
+              </button></> : <></>
+}
+
             <button
               onClick={() => handlePay(product._id)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-base font-medium transition shadow inline-flex items-center gap-2">

@@ -43,8 +43,8 @@ const Navbar = () => {
                     <div className='flex items-center relative'>
                         <img
                             className='w-12'
-                            src={'./logo.png'} alt="" />
-                        <NavLink to={'/'}> <p className="btn btn-ghost text-xl absolute top-1 left-8">DailyMart</p></NavLink>
+                            src={'/logo.png'} alt="" />
+                        <NavLink to={'/'}> <p className=" text-2xl font-bold absolute top-2 left-12">DailyMart</p></NavLink>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">

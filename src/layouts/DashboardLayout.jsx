@@ -47,7 +47,7 @@ const DashboardLayout = () => {
           <div className='mx-2 flex-1 text-xl font-bold flex items-center relative'>
             <img
               className='w-12'
-              src={'./logo.png'} alt="" />
+              src={'/logo.png'} alt="" />
             <NavLink to={'/'}> <p className="btn btn-ghost text-xl absolute top-1 left-8">DailyMart</p></NavLink>
           </div>
           <ul className='flex-1'>

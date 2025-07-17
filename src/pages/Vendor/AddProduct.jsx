@@ -18,7 +18,7 @@ const AddProduct = () => {
 
   const { user } = useAuth()
 
-  console.log(user.email);
+  // console.log(user.email);
 
   const axiosSecure = useAxiosSecure();
 
@@ -32,7 +32,7 @@ const AddProduct = () => {
     axiosSecure.post('/products', data).then(res => {
       console.log(res.data);
       if (res.data.insertedId) {
-        toast.success("Advertisement submitted successfully!");
+        toast.success("Product Added successfully!");
         reset();
       } else {
         toast.error("Submission failed. Please try again.");
