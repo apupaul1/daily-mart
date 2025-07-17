@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
-import Navbar from '../Shared/Navbar/Navbar';
 import { Link, NavLink, Outlet } from 'react-router';
 import Sidebar from '../Shared/DashboardComponent/Sidebar';
 import { FaBars } from 'react-icons/fa';
+import useAuth from '../hooks/useAuth';
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  const { user, logOut } = useAuth();
+
+  const handleLogout = () => {
+    logOut()
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
 
   return (
     <div className="drawer ">
@@ -36,7 +48,7 @@ const DashboardLayout = () => {
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal flex items-center">
               <li><Link to={'/'}>Home</Link></li>
-              <NavLink><button className='btn btn-primary'>Logout</button></NavLink>
+              <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
             </ul>
           </div>
         </div>
@@ -52,9 +64,9 @@ const DashboardLayout = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-       <div className='bg-white'>
-         <Sidebar></Sidebar>
-       </div>
+        <div className='bg-white'>
+          <Sidebar></Sidebar>
+        </div>
       </div>
     </div>
   );

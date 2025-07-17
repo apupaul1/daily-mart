@@ -14,7 +14,7 @@ import {
     FaMoneyBillWave,
     FaStickyNote,
 } from 'react-icons/fa';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
@@ -32,6 +32,7 @@ const UpdateProduct = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -90,6 +91,7 @@ const UpdateProduct = () => {
             const res = await axiosSecure.put(`/products/${id}`, formattedData);
             if (res.data.success) {
                 toast.success('Product updated successfully!');
+                navigate('/dashboard/my-products')
             } else {
 
                 toast.info('Product found, but no changes were applied (or identical data submitted).');

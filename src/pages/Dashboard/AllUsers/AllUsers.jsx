@@ -58,7 +58,7 @@ const AllUsers = () => {
                         </thead>
                         <tbody>
                             {users.map(user => (
-                                <tr key={user._id} className="border-b border-b-gray-300 hover:bg-gray-50">
+                                <tr key={user._id} className="border-b text-center border-b-gray-300 hover:bg-gray-50">
                                     <td className="px-6 py-3 text-gray-800">{user.name || 'N/A'}</td>
                                     <td className="px-6 py-3 text-gray-700">{user.email}</td>
                                     <td className="px-6 py-3 capitalize font-medium text-blue-700">{user.role || 'user'}</td>

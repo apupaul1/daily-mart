@@ -22,6 +22,9 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AllAds from "../pages/Dashboard/AllAds/AllAds";
 import PriceTrends from "../pages/Dashboard/PriceTrends/PriceTrends";
 import UpdateProduct from "../pages/Vendor/UpdateProduct/UpdateProduct";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import AdminRoute from "../routes/AdminRoute";
+import VendorRoute from "../routes/VendorRoute";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: HomePage
+            },
+            {
+                path: 'forbidden',
+                Component: Forbidden
             },
             {
                 path: 'allproducts',
@@ -66,27 +73,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'myorder',
-                element: <MyOrderList></MyOrderList>
+                Component: MyOrderList
             },
             {
                 path: 'payment/:productId',
                 Component: Payment
             },
             {
-                path: 'addproduct',
-                element:  <AddProduct></AddProduct> 
+                path: 'addproduct', 
+                element: <VendorRoute><AddProduct></AddProduct></VendorRoute>
             },
             {
                 path: 'my-products',
-                element: <MyAddedProduct></MyAddedProduct> 
+                element: <VendorRoute><MyAddedProduct></MyAddedProduct></VendorRoute>
             },
             {
                 path: 'postadvertisement',
-                element: <AdvertisementForm></AdvertisementForm> 
+                element: <VendorRoute><AdvertisementForm></AdvertisementForm></VendorRoute>
             },
             {
                 path: 'my-ads',
-                element:  <MyAdvertisements></MyAdvertisements> 
+                element: <VendorRoute><MyAdvertisements></MyAdvertisements></VendorRoute>
             },
             {
                 path: 'watchlist',
@@ -102,19 +109,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'all-orders',
-                Component: AllOrder,
+                element: <AdminRoute><AllOrder></AllOrder></AdminRoute>
             },
             {
                 path: 'all-products',
-                Component: AllProduct
+                element: <AdminRoute><AllProduct></AllProduct></AdminRoute>
             },
             {
                 path: 'all-users',
-                Component: AllUsers,
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'all-ads',
-                Component: AllAds,
+                element: <AdminRoute><AllAds></AllAds></AdminRoute>
             }
         ]
     },

@@ -21,7 +21,7 @@ const MyAddedProduct = () => {
 
     console.log(products);
 
-    const handleUpdate = (id) =>{
+    const handleUpdate = (id) => {
         navigate(`/dashboard/update-product/${id}`);
     }
 
@@ -49,7 +49,7 @@ const MyAddedProduct = () => {
                                 timer: 1500,
                                 showConfirmButton: false,
                             });
-                        } 
+                        }
                         refetch();
                     })
             } catch (error) {
@@ -89,15 +89,24 @@ const MyAddedProduct = () => {
                                 <td className="min-w-[140px]">{product.marketName}</td>
                                 <td>{new Date(product.date).toLocaleDateString()}</td>
                                 <td>
-                                    <span className={`badge ${product.status === 'approved'
-                                        ? 'badge-success'
-                                        : product.status === 'rejected'
-                                            ? 'badge-error'
-                                            : 'badge-warning'
-                                        }`}>
+                                    <div
+                                        className={`badge mb-1 cursor-default tooltip ${product.status === 'approved'
+                                                ? 'badge-success'
+                                                : product.status === 'rejected'
+                                                    ? 'badge-error'
+                                                    : 'badge-warning'
+                                            }`}
+                                        data-tip={
+                                            product.status === 'rejected' && product.rejectionReason
+                                                ? product.rejectionReason
+                                                : ''
+                                        }
+                                    >
                                         {product.status}
-                                    </span>
+                                    </div>
                                 </td>
+
+
                                 <td className="flex flex-col lg:flex-row gap-2 justify-center items-center">
                                     <button
                                         className="btn btn-sm btn-info w-24"

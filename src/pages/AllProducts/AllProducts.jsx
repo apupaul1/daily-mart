@@ -80,7 +80,7 @@ const AllProducts = () => {
       <h1 className="text-3xl font-extrabold text-center mb-10 text-gray-800">All Market Products</h1>
 
       {/* Filter Bar */}
-      <div className="bg-white shadow-lg rounded-xl p-6 mb-8 flex flex-wrap justify-between items-center gap-4">
+      <div className="bg-white shadow-lg rounded-xl p-6 mb-8 flex flex-wrap justify-around items-center gap-4">
         <div className="flex gap-2 flex-wrap">
           <DatePicker
             selected={startDate}
@@ -141,12 +141,10 @@ const AllProducts = () => {
                 <p><FaMoneyBillWave className="inline-block mr-1 text-green-600" /> <strong>Price:</strong> ৳{product.latestPrice}</p>
                 <p><FaStore className="inline-block mr-1 text-blue-600" /> <strong>Market:</strong> {product.marketName}</p>
                 <p><FaUserTie className="inline-block mr-1 text-purple-600" /> <strong>Vendor:</strong> {product.vendorName}</p>
-                <p><FaEnvelope className="inline-block mr-1 text-gray-600" /> <strong>Email:</strong> {product.vendorEmail}</p>
                 <p><FaCalendarAlt className="inline-block mr-1 text-indigo-600" /> <strong>Date:</strong> {product.date?.slice(0, 10)}</p>
-                <p><FaClipboardCheck className="inline-block mr-1 text-teal-600" /> <strong>Status:</strong> {product.status}</p>
                 <button
                   onClick={() => handleDetails(product._id)}
-                  className="mt-3  w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded text-center font-medium transition flex items-center justify-center gap-2"
+                  className="mt-3 btn w-full btn-primary text-white py-2 rounded text-center font-medium transition flex items-center justify-center gap-2"
                 >
                   <FaSearchPlus /> View Details
                 </button>
@@ -173,9 +171,8 @@ const AllProducts = () => {
             <button
               key={i}
               onClick={() => setPage(i + 1)}
-              className={`px-3 py-1 rounded ${
-                page === i + 1 ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-300'
-              }`}
+              className={`px-3 py-1 rounded ${page === i + 1 ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-300'
+                }`}
             >
               {i + 1}
             </button>

@@ -7,24 +7,17 @@ import {
 import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { BsCardChecklist } from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
+import UseUserRole from '../../hooks/UseUserRole';
 
-const navItems = [
-  { label: 'All Users', path: 'all-users', icon: <FaUsers /> },
-  { label: 'All Product', path: 'all-products', icon: <FaClipboardList /> },
-  { label: 'All Advertisement', path: 'all-ads', icon: <FaBullhorn /> },
-  { label: 'All Order', path: 'all-orders', icon: <FaShoppingCart /> },
-  { label: 'Add Product', path: 'addproduct', icon: <FaPlus /> },
-  { label: 'My Products', path: 'my-products', icon: <MdOutlineProductionQuantityLimits /> },
-  { label: 'Add Advertisement', path: 'postadvertisement', icon: <FaBullhorn /> },
-  { label: 'My Advertisements', path: 'my-ads', icon: <FaChartLine /> },
-  { label: 'View Price Trends', path: 'price-trends', icon: <BsCardChecklist /> },
-  { label: 'Manage Watchlist', path: 'watchlist', icon: <FaTools /> },
-  { label: 'My Order List', path: 'myorder', icon: <FaShoppingCart /> },
-];
 
 const Sidebar = () => {
 
   const { user } = useAuth()
+  const { role, roleLoading } = UseUserRole();
+
+  console.log(roleLoading);
+  console.log(role);
+
 
   return (
     <div className="p-4 flex flex-col min-h-screen h-full overflow-y-auto">
@@ -53,20 +46,125 @@ const Sidebar = () => {
       <nav className="flex-1">
         <p className="text-xs text-gray-400 uppercase mb-2">Navigation</p>
         <ul className="space-y-2 text-sm">
-          {navItems.map(({ label, path, icon }) => (
-            <li key={path}>
-              <NavLink
-                to={path}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'
-                  }`
-                }
-              >
-                <span className="text-base">{icon}</span>
-                {label}
-              </NavLink>
-            </li>
-          ))}
+          {/* Admin Only Links */}
+          {!roleLoading && role === 'admin' &&
+            <>
+              <li>
+                <NavLink
+                  to="all-users"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                  }
+                >
+                  <FaUsers />
+                  All Users
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="all-products"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                  }
+                >
+                  <FaClipboardList />
+                  All Products
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="all-ads"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                  }
+                >
+                  <FaBullhorn />
+                  All Advertisements
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="all-orders"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                  }
+                >
+                  <FaShoppingCart />
+                  All Orders
+                </NavLink>
+              </li>
+            </>
+          }
+
+          {/* Vendor Only Links */}
+          {!roleLoading && role === 'vendor' && (
+            <>
+              <li>
+                <NavLink to="addproduct" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <FaPlus />
+                  Add Product
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="my-products" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <MdOutlineProductionQuantityLimits />
+                  My Products
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="postadvertisement" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <FaBullhorn />
+                  Add Advertisement
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="my-ads" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <FaChartLine />
+                  My Advertisements
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {/* Buyer Only Links */}
+
+          {
+            !roleLoading && role === 'user' && <>
+              <li>
+                <NavLink to="watchlist" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <FaTools />
+                  Manage Watchlist
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="myorder" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <FaShoppingCart />
+                  My Order List
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="price-trends" className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 ${isActive ? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-700'}`
+                }>
+                  <BsCardChecklist />
+                  View Price Trends
+                </NavLink>
+              </li>
+            </>
+          }
+
         </ul>
       </nav>
     </div>

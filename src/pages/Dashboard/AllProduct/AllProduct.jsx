@@ -33,14 +33,37 @@ const AllProducts = () => {
     };
 
     // Handle product rejection
+
     const handleReject = async (id) => {
-        try {
-            const res = await axiosSecure.patch(`/products/${id}`, { status: 'rejected' });
-            if (res.data.updated) {
-                queryClient.invalidateQueries('all-products');
+        const { value: reason } = await Swal.fire({
+            title: 'Reject Product',
+            input: 'textarea',
+            inputLabel: 'Reason for rejection',
+            inputPlaceholder: 'Enter your feedback here...',
+            inputAttributes: {
+                'aria-label': 'Enter your feedback here'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        });
+
+        if (reason) {
+            try {
+                const res = await axiosSecure.patch(`/products/${id}`, {
+                    status: 'rejected',
+                    rejectionReason: reason,
+                });
+
+                if (res.data.updated) {
+                    Swal.fire('Rejected!', 'The product has been rejected successfully.', 'success');
+                    queryClient.invalidateQueries(['all-products']);
+                }
+            } catch (error) {
+                console.error('Error rejecting product:', error);
+                Swal.fire('Error!', error.message || 'Rejection failed.', 'error');
             }
-        } catch (error) {
-            console.error('Error rejecting product:', error);
         }
     };
 

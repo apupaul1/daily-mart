@@ -79,12 +79,13 @@ const ViewDetailsProduct = () => {
 
   const product = data?.product;
   const chartData = product?.prices?.map(p => ({
-    date: new Date(p.date).toLocaleDateString('en-GB'), // e.g., 16/07/2025
+    date: new Date(p.date).toLocaleDateString('en-GB'),
     price: parseFloat(p.price),
   })) || [];
 
   const [selectedDate, setSelectedDate] = useState('');
   const [priceDifference, setPriceDifference] = useState(null);
+  const [isWatchlisted, setIsWatchlisted] = useState(false);
 
   // Create a list of available previous dates (excluding latest date)
   const availableDates = product?.prices?.slice(0, -1).map(p => new Date(p.date).toLocaleDateString('en-GB')) || [];
@@ -135,12 +136,15 @@ const ViewDetailsProduct = () => {
       const res = await axiosSecure.post('/watchlist', watchList);
       if (res.data.insertedId) {
         toast.success("Added to watchlist!");
+        setIsWatchlisted(true);
       } else {
         toast.error("Failed to add to watchlist.");
+        return false;
       }
     } catch (err) {
       console.error(err);
       toast.error("An error occurred while adding to watchlist.");
+      return false;
     }
   };
 
@@ -208,8 +212,14 @@ const ViewDetailsProduct = () => {
           <div className="mt-8 flex justify-center gap-6 flex-wrap">
             <button
               onClick={() => handleAddWatchlist(watchList)}
-              className="px-4 py-2 border border-red-500 text-red-600 hover:bg-red-50 rounded-md text-sm font-medium transition flex items-center gap-1">
-              <FaHeart /> Add to Watchlist
+              disabled={isWatchlisted}
+              className={`px-4 py-2 border ${isWatchlisted
+                  ? 'border-red-600 bg-red-100 text-red-600'
+                  : 'border-red-500 text-red-600 hover:bg-red-50'
+                } rounded-md text-sm font-medium transition flex items-center gap-1`}
+            >
+              <FaHeart className={isWatchlisted ? 'text-red-600' : 'text-red-300'} />
+              {isWatchlisted ? 'Added to Watchlist' : 'Add to Watchlist'}
             </button>
             <button
               onClick={() => handlePay(product._id)}
@@ -243,7 +253,7 @@ const ViewDetailsProduct = () => {
               <textarea
                 {...register('comment', { required: true })}
                 rows="3"
-                placeholder="Write your comment (e.g. price seems too high / fair / recently dropped)..."
+                placeholder="Write your comment about Price, Also do not forget to give a rating"
                 className="w-full border rounded p-3"
               ></textarea>
               <button

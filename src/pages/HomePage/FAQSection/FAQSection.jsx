@@ -32,15 +32,15 @@ const FAQSection = () => {
     };
 
     return (
-        <section className="bg-gradient-to-br from-green-50 to-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 w-full max-w-8xl mx-auto shadow-lg mb-12">
+        <section className="bg-gradient-to-br from-green-50 to-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 lg:py-32 w-full max-w-8xl mx-auto shadow-lg mb-12">
             <div className='flex flex-col lg:flex-row gap-1'>
 
 
                 <div className='flex-1 flex flex-col lg:flex-row gap-3 lg:relative  items-center'>
 
-                    <img className='md:w-[300px] lg:w-[390px] flex-1 rounded-[40px] lg:absolute lg:-top-12' src={FAQ1} alt="" />
+                    <img className='md:w-[300px] lg:w-[300px] flex-1 rounded-[40px] lg:absolute lg:-top-10 lg:left-16' src={FAQ1} alt="" />
 
-                    <img className='hidden md:w-[300px] lg:flex lg:w-[400px] flex-1 rounded-[40px] border-t-8 border-t-white border-l-white border-l-8 lg:absolute lg:right-12 lg:top-8' src={FAQ2} alt="" />
+                    <img className='hidden md:w-[300px] lg:flex lg:w-[300px] flex-1 rounded-[40px] border-t-8 border-t-white border-l-white border-l-8 lg:absolute lg:right-32 lg:top-8' src={FAQ2} alt="" />
                 </div>
 
 
