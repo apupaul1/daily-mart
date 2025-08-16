@@ -38,7 +38,7 @@ const AddHighlights = () => {
 
     return (
         <div>
-            <h2 className="text-3xl font-bold text-center my-12 text-neutral">Advertisement Highlights</h2>
+            <h2 className="text-xl md:text-3xl font-bold text-center my-6 md:my-12 text-neutral">Advertisement Highlights</h2>
 
             <Carousel
                 autoPlay
@@ -51,12 +51,12 @@ const AddHighlights = () => {
                 {ads.map((ad, idx) => (
                     <div key={idx}>
                         <img
-                            className="h-[520px] w-full object-cover"
+                            className="h-[140px] md:h-[520px] w-full object-cover"
                             src={ad.banner || fallbackImage}
                             alt={`Ad ${idx + 1}`}
                         />
                         {ad.title && (
-                            <p className="legend text-lg">{ad.title}</p>
+                            <p className="legend text-lg hidden md:flex">{ad.title}</p>
                         )}
                     </div>
                 ))}
