@@ -7,6 +7,7 @@ import AddHighlights from '../AddHighlights/AddHighlights';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../../Shared/Loading/Loading';
 import NewsLetter from '../NewsLetter/NewsLetter';
+import PopularSales from '../PopularSales/PopularSales';
 
 const HomePage = () => {
     const {loading} = useAuth()
@@ -21,6 +22,7 @@ const HomePage = () => {
             <ProductSection></ProductSection>
             <OurServices></OurServices>
             <AddHighlights></AddHighlights>
+            <PopularSales></PopularSales>
             <NewsLetter></NewsLetter>
             <FAQSection></FAQSection>
         </div>
