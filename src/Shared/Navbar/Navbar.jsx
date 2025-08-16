@@ -27,11 +27,11 @@ const Navbar = () => {
     </>
 
     return (
-        <div>
-            <div className="navbar bg-green-400 shadow-sm">
+        <div className='sticky top-0 z-90'>
+            <div className="navbar bg-green-400 shadow-sm ">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost pl-0 lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                         </div>
                         <ul
@@ -40,11 +40,11 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <div className='flex items-center relative'>
+                    <div className='flex items-center relative gap-2'>
                         <img
-                            className='w-12'
+                            className='w-9 md:w-12'
                             src={'/logo.png'} alt="" />
-                        <NavLink to={'/'}> <p className=" text-2xl font-bold absolute top-2 left-12">DailyMart</p></NavLink>
+                        <NavLink to={'/'}> <p className="text-lg lg:text-2xl font-bold lg:absolute top-2 left-12">DailyMart</p></NavLink>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
