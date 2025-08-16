@@ -3,7 +3,7 @@ import { FaPaperPlane, FaStar } from 'react-icons/fa'; // Make sure you have rea
 
 const NewsLetter = () => {
     return (
-        <div className="relative overflow-hidden py-20 px-6">
+        <div className="relative overflow-hidden mb-12 px-6">
             <div className="absolute inset-0 z-0">
                 {/* Subtle background gradient */}
                 

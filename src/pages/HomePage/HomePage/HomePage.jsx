@@ -8,6 +8,7 @@ import useAuth from '../../../hooks/useAuth';
 import Loading from '../../../Shared/Loading/Loading';
 import NewsLetter from '../NewsLetter/NewsLetter';
 import PopularSales from '../PopularSales/PopularSales';
+import MarketMarquee from '../MarketMarquee/MarketMarquee';
 
 const HomePage = () => {
     const {loading} = useAuth()
@@ -20,11 +21,12 @@ const HomePage = () => {
         <div className='min-h-screen'>
             <Banner></Banner>
             <ProductSection></ProductSection>
+            <MarketMarquee></MarketMarquee>
             <OurServices></OurServices>
             <AddHighlights></AddHighlights>
             <PopularSales></PopularSales>
-            <NewsLetter></NewsLetter>
             <FAQSection></FAQSection>
+            <NewsLetter></NewsLetter>
         </div>
     );
 };
